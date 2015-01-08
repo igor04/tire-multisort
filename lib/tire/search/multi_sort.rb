@@ -3,10 +3,14 @@ module Tire
 
     # EXAMPLE of using:
     #
+    #
     # multi_sort sort, order do
+    #
     #   by_default :premium
     #
     #   by :date
+    #   by :rating,    invert(order)
+    #
     #   by :name,      :title
     #   by :rating,    :licensee_rating
     #   by :relevance, :_score
@@ -16,6 +20,7 @@ module Tire
     #
     #   by_collection  :category,  :category, :name
     #   by_collection  :premium,   :premium, :relevance, :name
+    #
     # end
     #
     class MultiSort < Sort
@@ -30,7 +35,7 @@ module Tire
 
         @sort = sort_by(sort_param)
         @order = order
-        fields_with_order.map { |sort_options| origin_by *sort_options }
+        fields_with_order.each { |opts| origin_by *opts }
       end
 
       def by_default(sort_param)
@@ -42,7 +47,15 @@ module Tire
       end
 
       def by(sort, *options)
-        @fields[sort] = options
+        if options.blank? || [:desc, :asc].include?(options.first)
+          @fields[sort] = options.unshift(sort)
+        else
+          @fields[sort] = options
+        end
+      end
+
+      def invert(order)
+        order.to_s == 'asc' ? :desc : :asc
       end
 
       private
@@ -52,9 +65,9 @@ module Tire
           field.push @order
         elsif field.last.is_a?(Hash) && !field.last.has_key?(:order)
           field.last.merge!(order: @order)
-        else
-          field
         end
+
+        field
       end
 
       def fields_with_order
@@ -72,7 +85,7 @@ module Tire
       end
 
       def sort_by(param)
-        param.to_s.split(',').map(&:to_sym)
+        param.to_s.split(',').map { |s| s.strip.to_sym }
       end
     end
   end

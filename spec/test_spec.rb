@@ -1,8 +1,28 @@
 require 'helper'
 
 describe "Tire::Search" do
-  it 'multi_sort' do
-    expect(Tire::Search::Search.new).to respond_to :multi_sort
+  subject(:search) { Tire::Search::Search.new }
+
+  it 'multi_sort present' do
+    expect(search).to respond_to :multi_sort
+  end
+
+  it 'multi_sort with declared order' do
+    search.multi_sort(:sort_by, :asc) do
+      by :sort_by, :field, :order
+      by :sort_by2, :field2, :order2
+    end
+
+    expect(search.sort.to_ary).to eq [{field: :order}]
+  end
+
+  it 'multi_sort with declared order' do
+    search.multi_sort(:sort_by, :asc) do
+      by :sort_by, :field
+      by :sort_by2, :field2
+    end
+
+    expect(search.sort.to_ary).to eq [{field: :asc}]
   end
 end
 

@@ -1,4 +1,4 @@
-# Tire Multisort
+# Tire Multisort [![Build Status](https://travis-ci.org/igor04/tire-multisort.png?branch=master)](https://travis-ci.org/igor04/tire-multisort)
 
 `multi_sort` extended tire `sort` with some abilities
 
@@ -31,8 +31,8 @@ Or install it yourself as:
    by :distance,  :_geo_distance, location: "test", unit: 'mi'
    by :premium,   :premium, :desc
 
-   by_collection  :category,  :category, :name
-   by_collection  :premium,   :premium, :relevance, :name
+   by_collection  :category,  [:category, :name]
+   by_collection  :premium,   [:premium, :relevance, :name]
  end
 ```
 
@@ -86,7 +86,7 @@ Or install it yourself as:
 
   ```ruby
     # multi_sort
-    by_collection  :category,  :category, :name
+    by_collection  :category, [:category, :name]
   ```
 
   ```ruby

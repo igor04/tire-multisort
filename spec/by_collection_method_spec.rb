@@ -12,8 +12,8 @@ describe "Tire::Search::MultiSort" do
         by :sort_field, :asc
         by :sort_param2, :sort_field2, :desc
 
-        by_collection :sort, :sort_param2, :sort_field, :name
-        by_collection :sort2, :name, :sort_field, :sort_param2
+        by_collection :sort,  [:sort_param2, :sort_field, :name]
+        by_collection :sort2, [:name, :sort_field, :sort_param2]
       end
 
       expect(search.sort.to_ary).to eq [{sort_field2: :desc}, {sort_field: :asc}, {name: :asc}]
@@ -28,7 +28,7 @@ describe "Tire::Search::MultiSort" do
         by :sort_field, :asc
         by :sort_param2, :sort_field2, :desc
 
-        by_collection :sort, :sort_param2, :sort_field, :name
+        by_collection :sort,  [:sort_param2, :sort_field, :name]
       end
 
       expect(search.sort.to_ary).to eq [{sort_field2: :desc}, {sort_field: :asc}, {name: :asc}]
@@ -43,7 +43,7 @@ describe "Tire::Search::MultiSort" do
         by :sort_field, :asc
         by :sort_param2, :sort_field2, :desc
 
-        by_collection :sort, :sort_param2, :sort_field, :name
+        by_collection :sort,  [:sort_param2, :sort_field, :name]
       end
 
       expect(search.sort.to_ary).to eq [{sort: :asc}, {name: :asc}, {sort_field2: :desc}]
@@ -58,7 +58,7 @@ describe "Tire::Search::MultiSort" do
         by :sort_field, :asc
         by :sort_param2, :sort_field2, :desc
 
-        by_collection :sort, :sort_param2, :sort_field, :name2
+        by_collection :sort,  [:sort_param2, :sort_field, :name2]
       end
 
       expect(search.sort.to_ary).to eq [{sort_field2: :desc}, {sort_field: :asc}]

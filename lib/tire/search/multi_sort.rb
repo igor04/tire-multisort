@@ -18,8 +18,8 @@ module Tire
     #   by :distance,  :_geo_distance, location: "test", unit: 'mi'
     #   by :premium,   :premium, :desc
     #
-    #   by_collection  :category,  :category, :name
-    #   by_collection  :premium,   :premium, :relevance, :name
+    #   by_collection  :category,  [:category, :name]
+    #   by_collection  :premium,   [:premium, :relevance, :name]
     #
     # end
     #
@@ -42,8 +42,12 @@ module Tire
         @default = sort_by(sort_param)
       end
 
-      def by_collection(sort, *collection)
-        @collections[sort] = collection
+      def by_collection(sort, collection)
+        if collection.is_a? Array
+          @collections[sort] = collection
+        else
+          raise ArgumentError, "expect Array (got #{collection.class}) for collection param"
+        end
       end
 
       def by(sort, *options)

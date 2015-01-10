@@ -57,7 +57,7 @@ describe "Tire::Search::MultiSort" do
         by :sort_field
         by :sort_param2, :sort_field2, :desc
 
-        by_collection :sort_param3, :sort_field, :sort_param2
+        by_collection :sort_param3,   [:sort_field, :sort_param2]
       end
 
       expect(search.sort.to_ary).to eq [{sort_field: :asc}, {sort_field2: :desc}]

@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = Tire::MultiSort::VERSION
   spec.authors       = ["igor04"]
   spec.email         = ["igor.s04g@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.summary       = %q{tire sort extension}
+  spec.description   = %q{multi_sort extended tire sort with some abilities}
+  spec.homepage      = "https://github.com/igor04/tire-multisort"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
@@ -20,6 +20,6 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.5"
   spec.add_development_dependency "rake"
-  spec.add_development_dependency "tire"
   spec.add_development_dependency "rspec"
+  spec.add_development_dependency "tire"
 end

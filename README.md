@@ -58,7 +58,7 @@ Or install it yourself as:
   ```ruby
     # multi_sort
     by :date, :asc
-    by :date, invert(order)
+    by :date, invert(order) # helper method (useful for some combination with using `collections`)
   ```
 
   ```ruby

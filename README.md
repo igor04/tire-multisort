@@ -53,6 +53,20 @@ Or install it yourself as:
     by :date, order
   ```
 
+- `predefined order` - using predefined order instead `order` parameter
+
+  ```ruby
+    # multi_sort
+    by :date, :asc
+    by :date, invert(order)
+  ```
+
+  ```ruby
+    # sort
+    by :date, :asc
+    by :date, (order == :asc ? :desc : :asc)
+  ```
+
 - `auto check` - run sort just from `collection`, `default` or from `sort` param
 
   ```ruby

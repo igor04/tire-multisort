@@ -1,4 +1,8 @@
-# Tire Multisort [![Build Status](https://travis-ci.org/igor04/tire-multisort.png?branch=master)](https://travis-ci.org/igor04/tire-multisort)
+# Tire Multisort
+[![Gem Version](https://badge.fury.io/rb/tire-multisort.png)](http://badge.fury.io/rb/tire-multisort)
+[![Code Climate](https://codeclimate.com/github/igor04/tire-multisort/badges/gpa.svg)](https://codeclimate.com/github/igor04/tire-multisort)
+[![Test Coverage](https://codeclimate.com/github/igor04/tire-multisort/badges/coverage.svg)](https://codeclimate.com/github/igor04/tire-multisort)
+[![Build Status](https://travis-ci.org/igor04/tire-multisort.png?branch=master)](https://travis-ci.org/igor04/tire-multisort)
 
 `multi_sort` extended tire `sort` with some abilities
 

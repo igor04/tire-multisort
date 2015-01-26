@@ -10,7 +10,7 @@ describe "Tire::Search::MultiSort" do
         by :sort_param2, :sort_field2, :desc
       end
 
-      expect(search.sort.to_ary).to eq [{sort_field: :asc}]
+      expect(search.to_hash[:sort]).to eq [{sort_field: :asc}]
     end
 
     it 'with alias' do
@@ -19,7 +19,7 @@ describe "Tire::Search::MultiSort" do
         by :sort_param2, :sort_field2
       end
 
-      expect(search.sort.to_ary).to eq [{sort_field: :desc}]
+      expect(search.to_hash[:sort]).to eq [{sort_field: :desc}]
     end
 
     it 'without alias and with predefined order' do
@@ -28,7 +28,7 @@ describe "Tire::Search::MultiSort" do
         by :sort_field2, :order
       end
 
-      expect(search.sort.to_ary).to eq [{sort_field: :asc}]
+      expect(search.to_hash[:sort]).to eq [{sort_field: :asc}]
     end
 
     it 'without alias' do
@@ -37,7 +37,7 @@ describe "Tire::Search::MultiSort" do
         by :sort_field2
       end
 
-      expect(search.sort.to_ary).to eq [{sort_field: :desc}]
+      expect(search.to_hash[:sort]).to eq [{sort_field: :desc}]
     end
 
     it 'with multiple sort' do
@@ -48,7 +48,7 @@ describe "Tire::Search::MultiSort" do
         by :sort_param2, :sort_field4, :asc
       end
 
-      expect(search.sort.to_ary).to eq [{sort_field2: :desc}, {sort_field: :desc}, {sort_field4: :asc}, {sort_field3: :desc}]
+      expect(search.to_hash[:sort]).to eq [{sort_field2: :desc}, {sort_field: :desc}, {sort_field4: :asc}, {sort_field3: :desc}]
     end
 
     it 'with incorrect multiple sort parameter' do
@@ -59,7 +59,7 @@ describe "Tire::Search::MultiSort" do
         by :sort_param2, :sort_field4, :asc
       end
 
-      expect(search.sort.to_ary).to eq [{sort_field: :desc}, {sort_field4: :asc}, {sort_field3: :desc}]
+      expect(search.to_hash[:sort]).to eq [{sort_field: :desc}, {sort_field4: :asc}, {sort_field3: :desc}]
     end
 
     it 'with multiple sort and spaces' do
@@ -70,7 +70,7 @@ describe "Tire::Search::MultiSort" do
         by :sort_param2, :sort_field4, :asc
       end
 
-      expect(search.sort.to_ary).to eq [{sort_field: :desc}, {sort_field4: :asc}, {sort_field3: :desc}]
+      expect(search.to_hash[:sort]).to eq [{sort_field: :desc}, {sort_field4: :asc}, {sort_field3: :desc}]
     end
 
     it 'with invert' do
@@ -83,7 +83,7 @@ describe "Tire::Search::MultiSort" do
         by :sort_param2, :sort_field4, :asc
       end
 
-      expect(search.sort.to_ary).to eq [{sort_field: :desc}]
+      expect(search.to_hash[:sort]).to eq [{sort_field: :desc}]
     end
 
     it 'with additional parameters' do
@@ -93,7 +93,7 @@ describe "Tire::Search::MultiSort" do
         by :distance, :_geo_distance, location: "test", unit: 'mi'
       end
 
-      expect(search.sort.to_ary).to eq  [{_geo_distance: {location: "test", unit: "mi", order: :asc}}]
+      expect(search.to_hash[:sort]).to eq  [{_geo_distance: {location: "test", unit: "mi", order: :asc}}]
     end
   end
 end

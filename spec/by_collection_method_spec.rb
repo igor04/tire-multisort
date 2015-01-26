@@ -16,7 +16,7 @@ describe "Tire::Search::MultiSort" do
         by_collection :sort2, [:name, :sort_field, :sort_param2]
       end
 
-      expect(search.sort.to_ary).to eq [{sort_field2: :desc}, {sort_field: :asc}, {name: :asc}]
+      expect(search.to_hash[:sort]).to eq [{sort_field2: :desc}, {sort_field: :asc}, {name: :asc}]
     end
 
     it 'with the same name as existed sort' do
@@ -31,7 +31,7 @@ describe "Tire::Search::MultiSort" do
         by_collection :sort,  [:sort_param2, :sort_field, :name]
       end
 
-      expect(search.sort.to_ary).to eq [{sort_field2: :desc}, {sort_field: :asc}, {name: :asc}]
+      expect(search.to_hash[:sort]).to eq [{sort_field2: :desc}, {sort_field: :asc}, {name: :asc}]
     end
 
     it 'ignore with multiple sort' do
@@ -46,7 +46,7 @@ describe "Tire::Search::MultiSort" do
         by_collection :sort,  [:sort_param2, :sort_field, :name]
       end
 
-      expect(search.sort.to_ary).to eq [{sort: :asc}, {name: :asc}, {sort_field2: :desc}]
+      expect(search.to_hash[:sort]).to eq [{sort: :asc}, {name: :asc}, {sort_field2: :desc}]
     end
 
     it 'with incorrect sort parameter' do
@@ -61,7 +61,7 @@ describe "Tire::Search::MultiSort" do
         by_collection :sort,  [:sort_param2, :sort_field, :name2]
       end
 
-      expect(search.sort.to_ary).to eq [{sort_field2: :desc}, {sort_field: :asc}]
+      expect(search.to_hash[:sort]).to eq [{sort_field2: :desc}, {sort_field: :asc}]
     end
   end
 end

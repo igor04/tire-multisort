@@ -2,8 +2,6 @@ module Tire
   module Search
 
     class Search
-      attr_reader :sort
-
       # sort: "category,name,distance,.." or single "category", :category
       # order: "asc", :desc
       # block methods: by, by_default, by_collection

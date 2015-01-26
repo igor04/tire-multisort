@@ -12,7 +12,7 @@ describe "Tire::Search::MultiSort" do
         by :sort_field2
       end
 
-      expect(search.sort.to_ary).to eq [{sort_field: :asc}]
+      expect(search.to_hash[:sort]).to eq [{sort_field: :asc}]
     end
 
     it 'with missing sort parameter' do
@@ -23,7 +23,7 @@ describe "Tire::Search::MultiSort" do
         by :sort_field2
       end
 
-      expect(search.sort.to_ary).to eq [{sort_field: :asc}]
+      expect(search.to_hash[:sort]).to eq [{sort_field: :asc}]
     end
 
     it 'could be redefined' do
@@ -36,7 +36,7 @@ describe "Tire::Search::MultiSort" do
         by_default :sort_param2
       end
 
-      expect(search.sort.to_ary).to eq [{sort_field2: :desc}]
+      expect(search.to_hash[:sort]).to eq [{sort_field2: :desc}]
     end
 
     it 'ignore when sort correct' do
@@ -47,7 +47,7 @@ describe "Tire::Search::MultiSort" do
         by :sort_param2, :sort_field2, :desc
       end
 
-      expect(search.sort.to_ary).to eq [{sort_field2: :desc}]
+      expect(search.to_hash[:sort]).to eq [{sort_field2: :desc}]
     end
 
     it 'with sort collection' do
@@ -60,7 +60,7 @@ describe "Tire::Search::MultiSort" do
         by_collection :sort_param3,   [:sort_field, :sort_param2]
       end
 
-      expect(search.sort.to_ary).to eq [{sort_field: :asc}, {sort_field2: :desc}]
+      expect(search.to_hash[:sort]).to eq [{sort_field: :asc}, {sort_field2: :desc}]
     end
   end
 end
